@@ -1,4 +1,4 @@
-######### Yingduo Song and Song Cao ###########
+
 ## pipeline for FFPE filtering ##
 
 #!/usr/bin/perl
