@@ -9,10 +9,15 @@ The only thing you need to do is to do "git pull https://github.com/ding-lab/ffp
 ## Usage ##
 
 perl ffpefilter.pl  --rdir --log --groupname --users --step 
+
 <rdir> = full path of the folder holding files for this run (user must provide)
+
 <log> = full path of the folder for saving log file; usually upper folder of rdir
+
 <groupname> = job group name
+
 <users> = user name for job group
+
 <step> run this pipeline step by step. (user must provide)
 
 ## Contact ##
