@@ -20,6 +20,18 @@ perl ffpefilter.pl  --rdir --log --groupname --users --step
 
 <step> run this pipeline step by step. (user must provide)
 
+
+The rdir contains all sample names that need the ffpe filtering. It should contain a maf file and a tumor bam file and associated index file named as:
+
+samplename.formated.maf
+samplename.T.bam
+
+The maf file should contain the following column:
+
+Hugo_Symbol     Chromosome      Start_Position  End_Position    Strand  Variant_Classification  Variant_Type    Reference_Allele        Tumor_Seq_Allele1       Tumor_Seq_Allele2       Tumor_Sample_Barcode
+
+SAMD11  chr1    925818  925818  +       Intron  SNP     G       G       T       ALCH-ABBG-TTP1-A
+
 ## Contact ##
 
 Yingduo Song and Song Cao
