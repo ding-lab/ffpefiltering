@@ -152,8 +152,9 @@ sub bsub_microsec{
     print MICROSEC "MUTCONVERTED=".$sample_full_path."/".$sample_name."_Mutations_converted.xlsx\n";
     print MICROSEC "RUNDIR=".$sample_full_path."\n";
     print MICROSEC "Rscript ".$script_dir."/convert_docker.R \$RUNDIR \$MAF $sample_name","\n";
-    print MICROSEC "Rscript ".$script_dir."/MicroSEC_docker.R $sample_name \$MUTCONVERTED \$TBAM NULL 151 AGATCGGAAGAGCACACGTCTGAACTCCAGTCA AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT hg38 \$RUNDIR","\n";  
+    print MICROSEC "Rscript ".$script_dir."/MicroSEC_docker.R $sample_name $sample_name \$MUTCONVERTED \$TBAM NULL 151 AGATCGGAAGAGCACACGTCTGAACTCCAGTCA AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT hg38 \$RUNDIR","\n";  
     close MICROSEC;
+
     my $sh_file=$job_files_dir."/".$current_job_file;  
     $bsub_com = "LSF_DOCKER_PRESERVE_ENVIRONMENT=false bsub -g /$compute_username/$group_name -q $q_name -n 1 -R \"select[mem>30000] rusage[mem=30000]\" -M 30000000 -a \'docker(scao/microsec:0.0.1)\' -o $lsf_out -e $lsf_err bash $sh_file\n";
     print $bsub_com;
