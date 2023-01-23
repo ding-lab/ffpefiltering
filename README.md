@@ -27,9 +27,12 @@ samplename.formated.maf
 samplename.T.bam
 
 The maf file should contain the following column:
+
 <sub> 
 Hugo_Symbol     Chromosome      Start_Position  End_Position    Strand  Variant_Classification  Variant_Type    Reference_Allele        Tumor_Seq_Allele1       Tumor_Seq_Allele2       Tumor_Sample_Barcode
+</sub>
 
+<sub> 
 SAMD11  chr1    925818  925818  +       Intron  SNP     G       G       T       ALCH-ABBG-TTP1-A
 </sub>
 
