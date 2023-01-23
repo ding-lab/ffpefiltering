@@ -1,10 +1,10 @@
 # ffpefilter version 0.0.1 #
-Use MicroSec for FFPE filtering. ffpefilter pipeline is a pipelined designed to do variant filtering for FFPE samples by using microsec tool. It uses the docker image scao/microsec:0.0.1 for efficiently launching jobs on compute1 cluster (LSF job system)
+Use MicroSec for FFPE filtering. ffpefilter pipeline is a pipeline designed to do variant filtering for FFPE samples by using microsec tool. It uses the docker image scao/microsec:0.0.1 for efficiently launching jobs on compute1 cluster (LSF job system)
 
 
 ## Install ##
 
-The only thing you need to do is to do "git pull https://github.com/ding-lab/ffpefiltering.git" 
+The only thing you need to do is to do "git clone https://github.com/ding-lab/ffpefiltering.git" 
 
 ## Usage ##
 
