@@ -10,15 +10,15 @@ The only thing you need to do is to do "git clone https://github.com/ding-lab/ff
 
 perl ffpefilter.pl  --rdir --log --groupname --users --step 
 
-<rdir> = full path of the folder holding files for this run (user must provide)
+rdir = full path of the folder holding files for this run (user must provide)
 
-<log> = full path of the folder for saving log file; usually upper folder of rdir
+log = full path of the folder for saving log file; usually upper folder of rdir
 
-<groupname> = job group name
+groupname = job group name
 
-<users> = user name for job group
+users = user name for job group
 
-<step> run this pipeline step by step. (user must provide)
+step = run this pipeline step by step. (user must provide)
 
 
 The rdir contains all sample names that need the ffpe filtering. It should contain a maf file and a tumor bam file and associated index file named as:
