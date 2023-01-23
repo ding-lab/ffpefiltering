@@ -15,3 +15,6 @@ perl ffpefilter.pl  --rdir --log --groupname --users --step
 <users> = user name for job group
 <step> run this pipeline step by step. (user must provide)
 
+## Contact ##
+
+Yingduo Song and Song Cao
