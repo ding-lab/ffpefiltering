@@ -37,6 +37,10 @@ Hugo_Symbol     Chromosome      Start_Position  End_Position    Strand  Variant_
 SAMD11  chr1    925818  925818  +       Intron  SNP     G       G       T       ALCH-ABBG-TTP1-A
 </sub>
 
+## Examples ##
+
+See work_log_alchemist_test for how to submit the jobs.
+
 ## Contact ##
 
 Yingduo Song and Song Cao
