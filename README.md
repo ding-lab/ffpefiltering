@@ -8,6 +8,27 @@ The only thing you need to do is to do "git clone https://github.com/ding-lab/ff
 
 ## Usage ##
 
+1. Create folder (rdir or use anyname you like) for running multiple samples 
+
+2. Create subdirectory under rder for each sample that need to run ffpe filtering
+
+For each sample direcotry, it should contain a maf file and a tumor bam file and associated index file for each sample named as:
+
+samplename.formated.maf
+samplename.T.bam
+
+The maf file should contain the following column, which can be extracted from the original maf file from somaticwrapper pipeline (remember to remove _T for the sample name in the Tumor_Sample_Barcode)
+
+<sub> 
+Hugo_Symbol     Chromosome      Start_Position  End_Position    Strand  Variant_Classification  Variant_Type    Reference_Allele        Tumor_Seq_Allele1       Tumor_Seq_Allele2       Tumor_Sample_Barcode
+</sub>
+
+<br />
+<sub>
+SAMD11  chr1    925818  925818  +       Intron  SNP     G       G       T       ALCH-ABBG-TTP1-A
+
+3. Enter the folder which contains ffpefilter.pl script, type
+ 
 perl ffpefilter.pl  --rdir --log --groupname --users --step 
 
 rdir = full path of the folder holding files for this run (user must provide)
@@ -19,23 +40,6 @@ groupname = job group name
 users = user name for job group
 
 step = run this pipeline step by step. (user must provide)
-
-
-The rdir contains all sample names that need the ffpe filtering. It should contain a maf file and a tumor bam file and associated index file named as:
-
-samplename.formated.maf
-samplename.T.bam
-
-The maf file should contain the following column:
-
-<sub> 
-Hugo_Symbol     Chromosome      Start_Position  End_Position    Strand  Variant_Classification  Variant_Type    Reference_Allele        Tumor_Seq_Allele1       Tumor_Seq_Allele2       Tumor_Sample_Barcode
-</sub>
-
-<br />
-<sub> 
-SAMD11  chr1    925818  925818  +       Intron  SNP     G       G       T       ALCH-ABBG-TTP1-A
-</sub>
 
 ## Examples ##
 
