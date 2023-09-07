@@ -8,14 +8,20 @@ The only thing you need to do is to do "git clone https://github.com/ding-lab/ff
 
 ## Usage ##
 
-Create folder (rdir or use anyname you like) for running multiple samples 
+1. Create folder (rdir or use anyname you like) for running multiple samples 
 
-Create subdirectory under rder for each sample that need to run ffpe filtering
+2. Create subdirectory under rder for each sample that need to run ffpe filtering
+
 <sub> 
 For each sample direcotry, it should contain a maf file and a tumor bam file and associated index file for each sample named as:
+<sub>
 
+<sub> 
 samplename.formated.maf
 samplename.T.bam
+</sub>
+
+</sub>
 
 The maf file should contain the following columns, which can be extracted from the original maf file from somaticwrapper pipeline (remember to remove _T for the sample name in the Tumor_Sample_Barcode)
 <sub> 
@@ -27,6 +33,7 @@ Hugo_Symbol     Chromosome      Start_Position  End_Position    Strand  Variant_
 <br />
 <sub>
 SAMD11  chr1    925818  925818  +       Intron  SNP     G       G       T       ALCH-ABBG-TTP1-A
+</sub>
 
 3. Enter the folder which contains ffpefilter.pl script, type
  
