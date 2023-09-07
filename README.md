@@ -21,16 +21,14 @@ samplename.formated.maf
 samplename.T.bam
 </sub>
 
-</sub>
-
+<sub>
 The maf file should contain the following columns, which can be extracted from the original maf file from somaticwrapper pipeline (remember to remove _T for the sample name in the Tumor_Sample_Barcode)
-<sub> 
+</sub> 
 
 <sub> 
 Hugo_Symbol     Chromosome      Start_Position  End_Position    Strand  Variant_Classification  Variant_Type    Reference_Allele        Tumor_Seq_Allele1       Tumor_Seq_Allele2       Tumor_Sample_Barcode
 </sub>
 
-<br />
 <sub>
 SAMD11  chr1    925818  925818  +       Intron  SNP     G       G       T       ALCH-ABBG-TTP1-A
 </sub>
