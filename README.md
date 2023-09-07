@@ -15,7 +15,10 @@ The only thing you need to do is to do "git clone https://github.com/ding-lab/ff
 For each sample direcotry, it should contain a maf file and a tumor bam file and associated index file for each sample named as:
 
 samplename.formated.maf
+
 samplename.T.bam
+
+samplename.T.bam.bai
 
 The maf file should contain the following columns, which can be extracted from the original maf file from somaticwrapper pipeline (remember to remove _T for the sample name in the Tumor_Sample_Barcode)
 
