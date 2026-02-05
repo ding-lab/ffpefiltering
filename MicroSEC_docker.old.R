@@ -23,12 +23,6 @@ fun_load_chr_no(organism) # chr_no
 fun_load_mutation(mutation_file, sample_name) # df_mutation
 
 # get the bam
-df_mutation$Chr_original <- df_mutation$Chromosome
-df_mutation <- df_mutation[order(df_mutation$Chr, df_mutation$Pos), ]
-sep_new <- TRUE
-continuous <- FALSE
-chr_last <- ""
-pos_last <- 0
 bam_file_tmp1 <- paste(bam_file, ".tmp1", sep = "")
 bam_file_tmp2 <- paste(bam_file, ".tmp2", sep = "")
 bam_file_slim <- paste(bam_file, ".SLIM", sep = "")
@@ -41,7 +35,7 @@ if (!file.exists(bam_file_slim)) {
         syscom <- paste("samtools view -h ",
           bam_file,
           " ",
-          df_mutation$Chr_original[mut_no],
+          df_mutation$Chromosome[mut_no],
           ":",
           max(1, df_mutation$Pos[mut_no] - 200),
           "-",
@@ -61,7 +55,7 @@ if (!file.exists(bam_file_slim)) {
       syscom <- paste("samtools view -h ",
         bam_file,
         " ",
-        df_mutation$Chr_original[mut_no],
+        df_mutation$Chromosome[mut_no],
         ":",
         max(1, df_mutation$Pos[mut_no] - 200),
         "-",
@@ -76,7 +70,7 @@ if (!file.exists(bam_file_slim)) {
         syscom <- paste("samtools view -h ",
           bam_file,
           " ",
-          df_mutation$Chr_original[mut_no],
+          df_mutation$Chromosome[mut_no],
           ":",
           pos_last,
           "-",
@@ -90,7 +84,7 @@ if (!file.exists(bam_file_slim)) {
         syscom <- paste("samtools view -h ",
           bam_file,
           " ",
-          df_mutation$Chr_original[mut_no],
+          df_mutation$Chromosome[mut_no],
           ":",
           pos_last,
           "-",
@@ -120,7 +114,7 @@ if (!file.exists(bam_file_slim)) {
         syscom <- paste("samtools view -h ",
           bam_file,
           " ",
-          df_mutation$Chr_original[mut_no],
+          df_mutation$Chromosome[mut_no],
           ":",
           max(1, df_mutation$Pos[mut_no] - 200),
           "-",
@@ -154,7 +148,7 @@ if (!file.exists(bam_file_slim)) {
           syscom <- paste("samtools view -h ",
             bam_file,
             " ",
-            df_mutation$Chr_original[mut_no],
+            df_mutation$Chromosome[mut_no],
             ":",
             pos_last,
             "-",
@@ -173,7 +167,7 @@ if (!file.exists(bam_file_slim)) {
           syscom <- paste("samtools view -h ",
             bam_file,
             " ",
-            df_mutation$Chr_original[mut_no],
+            df_mutation$Chromosome[mut_no],
             ":",
             pos_last,
             "-",
@@ -207,7 +201,7 @@ if (!file.exists(bam_file_slim)) {
           syscom <- paste("samtools view -h ",
             bam_file,
             " ",
-            df_mutation$Chr_original[mut_no],
+            df_mutation$Chromosome[mut_no],
             ":",
             max(1, df_mutation$Pos[mut_no] - 200),
             "-",
@@ -240,6 +234,8 @@ if (!file.exists(bam_file_slim)) {
       }
     }
   }
+
+  ## generate bam files
   syscom <- paste("samtools view -bS ",
     bam_file_slim,
     " > ",
@@ -247,6 +243,7 @@ if (!file.exists(bam_file_slim)) {
     sep = ""
   )
   system(syscom)
+
   syscom <- paste("samtools sort -@ 4 -o ",
     bam_file_slim,
     " ",
@@ -254,21 +251,25 @@ if (!file.exists(bam_file_slim)) {
     sep = ""
   )
   system(syscom)
+
   syscom <- paste("rm ",
     bam_file_tmp1,
     sep = ""
   )
   system(syscom)
+
   syscom <- paste("rm ",
     bam_file_tmp2,
     sep = ""
   )
   system(syscom)
+
   syscom <- paste("samtools index ",
     bam_file_slim,
     sep = ""
   )
   system(syscom)
+
   print(paste("Slimmed BAM files were saved as ", bam_file_slim, sep = ""))
 }
 
@@ -276,13 +277,10 @@ if (!file.exists(bam_file_slim)) {
 bam_file <- bam_file_slim
 fun_load_bam(bam_file) # df_bam
 
-# analysis
 result <- fun_read_check(short_homology_search_length = 4)
 msec <- result[[1]]
 homology_search <- result[[2]]
 mut_depth <- result[[3]]
-
-# search homologous sequences
 msec <- fun_homology(msec,
   homology_search,
   min_homology_search = 40
@@ -301,6 +299,19 @@ msec <- fun_analysis(msec,
   threshold_low_quality_rate = 0.1,
   homopolymer_length = 15
 )
-
 # save the results
 fun_save(msec, output, ".")
+
+# check the output
+# detect <- paste0("MicroSEC-result_", output)
+# doc <- list.files()[stringr::str_detect(list.files(), detect)]
+# result <- openxlsx::read.xlsx(doc, sheet = 1)
+
+# if (length(table(result$filter_4_highly_homologous_region)) == 1) {
+# syscom <- paste("echo", " ", "'no artifacts found.'", " ", ">", output, "_artifacts_detect.txt", sep = "")
+# system(syscom)
+# } else {
+# result_sub <- result[which(result$filter_4_highly_homologous_region), c("Tumor_Sample_Barcode", "Chr", "Gene", "Pos", "Mut_type", "Ref", "Alt", "total_read", "soft_clipped_read", "filter_1_mutation_intra_hairpin_loop", "filter_2_hairpin_structure", "filter_3_microhomology_induced_mutation", "filter_4_highly_homologous_region")]
+# file_name <- paste(output, "_artifacts_detect.txt", sep = "")
+# write.table(result_sub, file_name, sep = "\t", quote = F, row.names = F)
+# }
